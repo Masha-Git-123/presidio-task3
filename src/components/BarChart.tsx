@@ -22,27 +22,24 @@ ChartJS.register(
 type Props = {
   posts: {
     name: string;
+    market_cap: number;
   }[];
 };
 
 export default function BarChart({ posts }: Props) {
   const chartData = {
-    labels: posts.map((uni) => uni.name),
+    labels: posts.map((coin) => coin.name),
 
     datasets: [
       {
-        label: "University Name Length",
+        label: "Market Cap (USD)",
 
-        data: posts.map((uni) => uni.name.length),
+        data: posts.map((coin) => coin.market_cap),
 
         backgroundColor: "rgba(59,130,246,0.8)",
-
         borderColor: "rgba(37,99,235,1)",
-
         borderWidth: 1,
-
         borderRadius: 8,
-
         maxBarThickness: 45,
       },
     ],
@@ -50,72 +47,34 @@ export default function BarChart({ posts }: Props) {
 
   const options = {
     responsive: true,
-
     maintainAspectRatio: false,
 
     plugins: {
-      legend: {
-        display: false,
-      },
+      legend: { display: true },
 
       title: {
         display: true,
-        text: "University Analysis",
-        font: {
-          size: 18,
-          weight: "bold" as const,
-        },
-      },
-
-      tooltip: {
-        enabled: true,
+        text: "Crypto Market Cap Analysis",
+        font: { size: 18, weight: "bold" as const },
       },
     },
 
     scales: {
       x: {
-        ticks: {
-          display: false,
-        },
-
-        grid: {
-          display: false,
-        },
-
-        title: {
-          display: true,
-          text: "Universities",
-          font: {
-            size: 14,
-          },
-        },
+        ticks: { display: false },
+        grid: { display: false },
+        title: { display: true, text: "Cryptocurrencies" },
       },
 
       y: {
         beginAtZero: true,
-
-        title: {
-          display: true,
-          text: "Name Length",
-          font: {
-            size: 14,
-          },
-        },
-
-        grid: {
-          color: "rgba(0,0,0,0.08)",
-        },
+        title: { display: true, text: "Market Cap (USD)" },
       },
     },
   };
 
   return (
-    <div
-      className="chart-card"
-      style={{
-        height: "400px",
-      }}
-    >
+    <div style={{ height: "400px" }}>
       <Bar data={chartData} options={options} />
     </div>
   );

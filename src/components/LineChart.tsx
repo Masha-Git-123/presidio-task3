@@ -26,31 +26,26 @@ ChartJS.register(
 type Props = {
   posts: {
     name: string;
+    current_price: number;
   }[];
 };
 
 export default function LineChart({ posts }: Props) {
   const chartData = {
-    labels: posts.map((uni) => uni.name),
+    labels: posts.map((coin) => coin.name),
 
     datasets: [
       {
-        label: "University Name Length",
+        label: "Current Price (USD)",
 
-        data: posts.map((uni) => uni.name.length),
+        data: posts.map((coin) => coin.current_price),
 
         borderColor: "#2563eb",
-
         backgroundColor: "rgba(37,99,235,0.15)",
-
         fill: true,
-
         tension: 0.4,
-
         pointRadius: 4,
-
         pointHoverRadius: 7,
-
         borderWidth: 3,
       },
     ],
@@ -58,72 +53,34 @@ export default function LineChart({ posts }: Props) {
 
   const options = {
     responsive: true,
-
     maintainAspectRatio: false,
 
     plugins: {
-      legend: {
-        display: false,
-      },
+      legend: { display: true },
 
       title: {
         display: true,
-        text: "University Trend",
-        font: {
-          size: 18,
-          weight: "bold" as const,
-        },
-      },
-
-      tooltip: {
-        enabled: true,
+        text: "Crypto Price Trend",
+        font: { size: 18, weight: "bold" as const },
       },
     },
 
     scales: {
       x: {
-        ticks: {
-          display: false,
-        },
-
-        grid: {
-          display: false,
-        },
-
-        title: {
-          display: true,
-          text: "Universities",
-          font: {
-            size: 14,
-          },
-        },
+        ticks: { display: false },
+        grid: { display: false },
+        title: { display: true, text: "Coins" },
       },
 
       y: {
         beginAtZero: true,
-
-        title: {
-          display: true,
-          text: "Name Length",
-          font: {
-            size: 14,
-          },
-        },
-
-        grid: {
-          color: "rgba(0,0,0,0.08)",
-        },
+        title: { display: true, text: "Price (USD)" },
       },
     },
   };
 
   return (
-    <div
-      className="chart-card"
-      style={{
-        height: "400px",
-      }}
-    >
+    <div style={{ height: "400px" }}>
       <Line data={chartData} options={options} />
     </div>
   );

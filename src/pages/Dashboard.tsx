@@ -34,17 +34,17 @@ export default function Dashboard() {
   <div className="dashboard">
 
     <h1>Dashboard</h1>
-      <div className="cards">
-        <div className="card">
-          <h3>Total Universities</h3>
-          <h2>{data?.length}</h2>
-        </div>
+    <div className="cards">
+  <div className="card">
+    <h3>Total Cryptocurrencies</h3>
+    <h2>{data?.length}</h2>
+  </div>
 
-        <div className="card">
-          <h3>Displayed Universities</h3>
-          <h2>10</h2>
-        </div>
-      </div>
+  <div className="card">
+    <h3>Top Coins Shown</h3>
+    <h2>10</h2>
+  </div>
+</div>
 
        <BarChart posts={data?.slice(0, 10) || []} />
         <LineChart posts={data?.slice(0, 10) || []} />
@@ -55,7 +55,7 @@ export default function Dashboard() {
 
     <EntryList />
 
-    <h2>Universities</h2>
+   <h2>Cryptocurrencies</h2>
 
     {data?.slice(0, 5).map((post) => (
       <div key={post.id} className="post-card">

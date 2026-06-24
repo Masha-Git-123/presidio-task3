@@ -1,7 +1,7 @@
 
 export const fetchPosts = async () => {
   const response = await fetch(
-    "http://universities.hipolabs.com/search?country=India"
+    "https://universities.hipolabs.com/search?country=India"
   );
 
   if (!response.ok) {
